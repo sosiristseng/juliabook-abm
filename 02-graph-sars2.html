@@ -1,0 +1,829 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>The spread of SARS-CoV-2 (Graph model) &#8212; Agent-based Modeling</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Flocking of birds" href="03-flocking.html" />
+    <link rel="prev" title="Schelling’s segregation model" href="01-schelling.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Agent-based Modeling</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Agent-based Modeling
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-schelling.html">
+   Schelling’s segregation model
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   The spread of SARS-CoV-2 (Graph model)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-flocking.html">
+   Flocking of birds
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-social-distancing.html">
+   COVID-19 social distancing model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-zombie.html">
+   Zombie Outbreak: An OpenStreetMap Example
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/sosiristseng/juliabook-abm/main?urlpath=tree/docs/02-graph-sars2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/sosiristseng/juliabook-abm"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/02-graph-sars2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-the-model">
+   Define the Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#animation">
+   Animation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-collection">
+   Data Collection
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>The spread of SARS-CoV-2 (Graph model)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-the-model">
+   Define the Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#animation">
+   Animation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-collection">
+   Data Collection
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="the-spread-of-sars-cov-2-graph-model">
+<h1>The spread of SARS-CoV-2 (Graph model)<a class="headerlink" href="#the-spread-of-sars-cov-2-graph-model" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://juliadynamics.github.io/Agents.jl/stable/examples/sir/">Source</a> from Agents.jl tutorial</p>
+<p>Here we add one more category of individuals: those who are infected, but do not know it. Transmission rate for infected and diagnosed individuals is lower than infected and undetected.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Agents</span><span class="p">,</span><span class="w"> </span><span class="n">Random</span><span class="p">,</span><span class="w"> </span><span class="n">DataFrames</span><span class="p">,</span><span class="w"> </span><span class="n">Graphs</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="n">Distributions</span><span class="o">:</span><span class="w"> </span><span class="n">Poisson</span><span class="p">,</span><span class="w"> </span><span class="n">DiscreteNonParametric</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="n">CairoMakie</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="define-the-model">
+<h2>Define the Model<a class="headerlink" href="#define-the-model" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">mutable</span><span class="w"> </span><span class="k">struct</span> <span class="kt">PoorSoul</span><span class="w"> </span><span class="o">&lt;:</span><span class="w"> </span><span class="kt">AbstractAgent</span><span class="w"></span>
+<span class="w">    </span><span class="n">id</span><span class="o">::</span><span class="kt">Int</span><span class="w">             </span><span class="c"># Unique agent ID</span><span class="w"></span>
+<span class="w">    </span><span class="n">pos</span><span class="o">::</span><span class="kt">Int</span><span class="w">            </span><span class="c"># Which city</span><span class="w"></span>
+<span class="w">    </span><span class="n">days_infected</span><span class="o">::</span><span class="kt">Int</span><span class="w">  </span><span class="c"># number of days since is infected</span><span class="w"></span>
+<span class="w">    </span><span class="n">status</span><span class="o">::</span><span class="kt">Symbol</span><span class="w">      </span><span class="c"># S/I/R</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">make_SIRgraph</span><span class="p">(;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Ns</span><span class="p">,</span><span class="w">                 </span><span class="c"># Populations of the cities</span><span class="w"></span>
+<span class="w">    </span><span class="n">migration_rates</span><span class="p">,</span><span class="w">    </span><span class="c"># Rate of people moving from one city to another</span><span class="w"></span>
+<span class="w">    </span><span class="n">β_und</span><span class="p">,</span><span class="w">              </span><span class="c"># Transmission rate of infected but undetected</span><span class="w"></span>
+<span class="w">    </span><span class="n">β_det</span><span class="p">,</span><span class="w">              </span><span class="c"># Transmission rate of infected and detected</span><span class="w"></span>
+<span class="w">    </span><span class="n">infection_period</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">reinfection_probability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">detection_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">death_rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.02</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">Is</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">zeros</span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">Ns</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="o">...</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">  </span><span class="c"># An array for initial number of infected but undetected people per city.</span><span class="w"></span>
+<span class="w">    </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2022</span><span class="p">,</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">rng</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MersenneTwister</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="nd">@assert</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">Ns</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">Is</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">β_und</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">β_det</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">migration_rates</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="s">&quot;length of Ns, Is, and B, and number of rows/columns in migration_rates should be the same &quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nd">@assert</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">migration_rates</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">migration_rates</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="s">&quot;migration_rates rates should be a square matrix&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">Ns</span><span class="p">)</span><span class="w"> </span><span class="c"># Number of cities</span><span class="w"></span>
+<span class="w">	</span>
+<span class="w">    </span><span class="c"># normalize migration_rates</span><span class="w"></span>
+<span class="w">    </span><span class="n">migration_rates_sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="p">(</span><span class="n">migration_rates</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">C</span><span class="w"></span>
+<span class="w">        </span><span class="n">migration_rates</span><span class="p">[</span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="o">:</span><span class="p">]</span><span class="w"> </span><span class="o">./=</span><span class="w"> </span><span class="n">migration_rates_sum</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">end</span><span class="w"></span>
+
+<span class="w">    </span><span class="c"># properties as a NamedTuple</span><span class="w"></span>
+<span class="w">    </span><span class="n">properties</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(;</span><span class="w"></span>
+<span class="w">        </span><span class="n">Ns</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">Is</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">β_und</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">β_det</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">migration_rates</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">infection_period</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">reinfection_probability</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">detection_time</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">C</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">death_rate</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span>
+<span class="w">	</span>
+<span class="w">    </span><span class="n">space</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GraphSpace</span><span class="p">(</span><span class="n">complete_digraph</span><span class="p">(</span><span class="n">C</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ABM</span><span class="p">(</span><span class="n">PoorSoul</span><span class="p">,</span><span class="w"> </span><span class="n">space</span><span class="p">;</span><span class="w"> </span><span class="n">properties</span><span class="p">,</span><span class="w"> </span><span class="n">rng</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="c"># Add initial susceptible individuals</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">city</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">C</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">Ns</span><span class="p">[</span><span class="n">city</span><span class="p">]</span><span class="w"></span>
+<span class="w">        </span><span class="n">ind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add_agent!</span><span class="p">(</span><span class="n">city</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">:S</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">end</span><span class="w"></span>
+<span class="w">    </span><span class="c"># add infected individuals</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">city</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">C</span><span class="w"></span>
+<span class="w">        </span><span class="n">inds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ids_in_position</span><span class="p">(</span><span class="n">city</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">Is</span><span class="p">[</span><span class="n">city</span><span class="p">]</span><span class="w"></span>
+<span class="w">            </span><span class="n">agent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">[</span><span class="n">inds</span><span class="p">[</span><span class="n">n</span><span class="p">]]</span><span class="w"></span>
+<span class="w">            </span><span class="n">agent</span><span class="o">.</span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:I</span><span class="w"> </span><span class="c"># Infected</span><span class="w"></span>
+<span class="w">            </span><span class="n">agent</span><span class="o">.</span><span class="n">days_infected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">        </span><span class="k">end</span><span class="w"></span>
+<span class="w">    </span><span class="k">end</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">model</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>make_SIRgraph (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">LinearAlgebra</span><span class="o">:</span><span class="w"> </span><span class="n">diagind</span><span class="w"></span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">make_SIRgraphParams</span><span class="p">(;</span><span class="w"></span>
+<span class="w">	</span><span class="n">C</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">max_travel_rate</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">infection_period</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">reinfection_probability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">detection_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">death_rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.02</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">Is</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">zeros</span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="o">...</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"></span>
+<span class="w">    </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2022</span><span class="p">,</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+<span class="w">	</span><span class="c"># For reproducibility</span><span class="w"></span>
+<span class="w">	</span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c"># City population</span><span class="w"></span>
+<span class="w">    </span><span class="n">Ns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="mi">50</span><span class="o">:</span><span class="mi">5000</span><span class="p">,</span><span class="w"> </span><span class="n">C</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c"># Undetected transmission</span><span class="w"></span>
+<span class="w">    </span><span class="n">β_und</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="mf">0.3</span><span class="o">:</span><span class="mf">0.02</span><span class="o">:</span><span class="mf">0.6</span><span class="p">,</span><span class="w"> </span><span class="n">C</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c"># Detected transmission (set to 10% of undetected)</span><span class="w"></span>
+<span class="w">    </span><span class="n">β_det</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">β_und</span><span class="w"> </span><span class="o">./</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c"># Migrate from city i to city j</span><span class="w"></span>
+<span class="w">	</span><span class="c"># People in small cities tend to migrate to bigger cities</span><span class="w"></span>
+<span class="w">	</span><span class="n">migration_rates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="w"> </span><span class="n">C</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">C</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">C</span><span class="w"></span>
+<span class="w">        </span><span class="n">migration_rates</span><span class="p">[</span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Ns</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Ns</span><span class="p">[</span><span class="n">c2</span><span class="p">])</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Ns</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">end</span><span class="w"></span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c"># Normalize migration rates</span><span class="w"></span>
+<span class="w">	</span><span class="n">maxM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">maximum</span><span class="p">(</span><span class="n">migration_rates</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">migration_rates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">migration_rates</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="n">max_travel_rate</span><span class="p">)</span><span class="w"> </span><span class="o">./</span><span class="w"> </span><span class="n">maxM</span><span class="w"></span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c"># Migrate to self = 1</span><span class="w"></span>
+<span class="w">    </span><span class="n">migration_rates</span><span class="p">[</span><span class="n">diagind</span><span class="p">(</span><span class="n">migration_rates</span><span class="p">)]</span><span class="w"> </span><span class="o">.=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"></span>
+<span class="w">	</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="p">(;</span><span class="w"> </span><span class="n">Ns</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">β_und</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">β_det</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">migration_rates</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">infection_period</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">reinfection_probability</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">detection_time</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">death_rate</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">Is</span><span class="p">)</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>make_SIRgraphParams (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">SIRgraphparams</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">make_SIRgraphParams</span><span class="p">(</span><span class="n">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="n">max_travel_rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.01</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Ns = [579, 4533, 2627, 3605, 2813, 3387, 2755, 4482], β_und = [0.32, 0.34, 0.5, 0.48, 0.6, 0.48, 0.5, 0.36], β_det = [0.032, 0.034, 0.05, 0.048, 0.06, 0.048, 0.05, 0.036], migration_rates = [1.0 0.01 … 0.00652190923317684 0.00990023474178404; 0.0012772998014559894 1.0 … 0.001821001751371528 0.002252515201511296; … ; 0.0013706662235968747 0.0029962253861949683 … 1.0 0.0029752583863739; 0.0012789459873924494 0.0022781462312473685 … 0.0018288346395493294 1.0], infection_period = 30, reinfection_probability = 0.05, detection_time = 14, death_rate = 0.02, Is = [0, 0, 0, 0, 0, 0, 0, 1])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Stepping function in the SIR Agent-based model</span><span class="w"></span>
+<span class="k">function</span><span class="w"> </span><span class="n">migrate!</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">agent</span><span class="o">.</span><span class="n">pos</span><span class="w"></span>
+<span class="w">    </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DiscreteNonParametric</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">C</span><span class="p">),</span><span class="w"> </span><span class="n">model</span><span class="o">.</span><span class="n">migration_rates</span><span class="p">[</span><span class="n">pid</span><span class="p">,</span><span class="w"> </span><span class="o">:</span><span class="p">])</span><span class="w"></span>
+<span class="w">    </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">rng</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">≠</span><span class="w"> </span><span class="n">pid</span><span class="w"></span>
+<span class="w">        </span><span class="n">move_agent!</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">end</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">transmit!</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">agent</span><span class="o">.</span><span class="n">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">:S</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">return</span><span class="w"></span>
+<span class="w">    </span><span class="n">rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">agent</span><span class="o">.</span><span class="n">days_infected</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">model</span><span class="o">.</span><span class="n">detection_time</span><span class="w"></span>
+<span class="w">        </span><span class="n">model</span><span class="o">.</span><span class="n">β_und</span><span class="p">[</span><span class="n">agent</span><span class="o">.</span><span class="n">pos</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"></span>
+<span class="w">        </span><span class="n">model</span><span class="o">.</span><span class="n">β_det</span><span class="p">[</span><span class="n">agent</span><span class="o">.</span><span class="n">pos</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">end</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Poisson</span><span class="p">(</span><span class="n">rate</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">rng</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">return</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">contactID</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">ids_in_position</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">contact</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">[</span><span class="n">contactID</span><span class="p">]</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">contact</span><span class="o">.</span><span class="n">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">:S</span><span class="w"> </span><span class="o">||</span><span class="w"></span>
+<span class="w">           </span><span class="p">(</span><span class="n">contact</span><span class="o">.</span><span class="n">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">:R</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">rng</span><span class="p">)</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="n">model</span><span class="o">.</span><span class="n">reinfection_probability</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">contact</span><span class="o">.</span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:I</span><span class="w"></span>
+<span class="w">            </span><span class="n">n</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">            </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">return</span><span class="w"></span>
+<span class="w">        </span><span class="k">end</span><span class="w"></span>
+<span class="w">    </span><span class="k">end</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+
+<span class="c"># Count infected days of the agent</span><span class="w"></span>
+<span class="n">update!</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">agent</span><span class="o">.</span><span class="n">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">:I</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">agent</span><span class="o">.</span><span class="n">days_infected</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">recover_or_die!</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">agent</span><span class="o">.</span><span class="n">days_infected</span><span class="w"> </span><span class="o">≥</span><span class="w"> </span><span class="n">model</span><span class="o">.</span><span class="n">infection_period</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">rng</span><span class="p">)</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="n">model</span><span class="o">.</span><span class="n">death_rate</span><span class="w"></span>
+<span class="w">            </span><span class="n">kill_agent!</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">else</span><span class="w"></span>
+<span class="w">            </span><span class="n">agent</span><span class="o">.</span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:R</span><span class="w"></span>
+<span class="w">            </span><span class="n">agent</span><span class="o">.</span><span class="n">days_infected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">        </span><span class="k">end</span><span class="w"></span>
+<span class="w">    </span><span class="k">end</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">agent_step!</span><span class="p">(</span><span class="n">agent</span><span class="o">::</span><span class="kt">PoorSoul</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">migrate!</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">transmit!</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">update!</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">recover_or_die!</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="p">)</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>agent_step! (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">make_SIRgraph</span><span class="p">(;</span><span class="w"> </span><span class="n">SIRgraphparams</span><span class="o">...</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AgentBasedModel with 24781 agents of type PoorSoul
+ space: GraphSpace with 8 positions and 56 edges
+ scheduler: fastest
+ properties: Ns, Is, β_und, β_det, migration_rates, infection_period, reinfection_probability, detection_time, C, death_rate
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="animation">
+<h2>Animation<a class="headerlink" href="#animation" title="Permalink to this headline">#</a></h2>
+<p>At the moment <a class="reference external" href="https://juliadynamics.github.io/Agents.jl/stable/agents_visualizations/#InteractiveDynamics.abmplot">abmplot</a> does not plot <code class="docutils literal notranslate"><span class="pre">GraphSpace</span></code>s, but we can still utilize the <a class="reference external" href="https://juliadynamics.github.io/Agents.jl/stable/agents_visualizations/#InteractiveDynamics.ABMObservable">ABMObservable</a>. We do not need to collect data here, only the current status of the model will be used in visualization.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">InteractiveDynamics</span><span class="w"></span>
+<span class="n">abmobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ABMObservable</span><span class="p">(</span><span class="n">model</span><span class="p">;</span><span class="w"> </span><span class="n">agent_step!</span><span class="p">)</span><span class="w">  </span><span class="c"># Observable: The quantity that updates dynamically and interactively</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ABMObservable with model:
+AgentBasedModel with 24781 agents of type PoorSoul
+ space: GraphSpace with 8 positions and 56 edges
+ scheduler: fastest
+ properties: Ns, Is, β_und, β_det, migration_rates, infection_period, reinfection_probability, detection_time, C, death_rate
+and with data collection:
+ adata: nothing
+ mdata: nothing
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">infected_fraction</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">id</span><span class="p">]</span><span class="o">.</span><span class="n">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">:I</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="n">infected_fractions</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">infected_fraction</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">ids_in_position</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">))</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">positions</span><span class="p">(</span><span class="n">m</span><span class="p">)]</span><span class="w"></span>
+
+<span class="c"># Connect (lift) model obervable to fracs, color, and the title.</span><span class="w"></span>
+<span class="n">fracs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lift</span><span class="p">(</span><span class="n">infected_fractions</span><span class="p">,</span><span class="w"> </span><span class="n">abmobs</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="w"></span>
+<span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lift</span><span class="p">(</span><span class="n">fs</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">[</span><span class="n">cgrad</span><span class="p">(</span><span class="ss">:inferno</span><span class="p">)[</span><span class="n">f</span><span class="p">]</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">fs</span><span class="p">],</span><span class="w"> </span><span class="n">fracs</span><span class="p">)</span><span class="w"></span>
+<span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lift</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;step = </span><span class="si">$</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="s">, infected = </span><span class="si">$</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="n">infected_fraction</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">allids</span><span class="p">(</span><span class="n">m</span><span class="p">))))</span><span class="s">%&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">abmobs</span><span class="o">.</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">abmobs</span><span class="o">.</span><span class="n">model</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observable{String} with 0 listeners. Value:
+&quot;step = 0, infected = 0%&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">))</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">xlabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;City&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Population&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="n">barplot!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="o">.</span><span class="n">Ns</span><span class="p">;</span><span class="w"> </span><span class="n">strokecolor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:black</span><span class="p">,</span><span class="w"> </span><span class="n">strokewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w"></span>
+<span class="n">fig</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/02-graph-sars2_12_0.png" src="_images/02-graph-sars2_12_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">record</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;covid_evolution.mp4&quot;</span><span class="p">;</span><span class="w"> </span><span class="n">framerate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="n">io</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">30</span><span class="w"></span>
+<span class="w">        </span><span class="n">recordframe!</span><span class="p">(</span><span class="n">io</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">Agents</span><span class="o">.</span><span class="n">step!</span><span class="p">(</span><span class="n">abmobs</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">end</span><span class="w"></span>
+<span class="w">    </span><span class="n">recordframe!</span><span class="p">(</span><span class="n">io</span><span class="p">)</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;covid_evolution.mp4&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Base64</span><span class="w"></span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">display_mp4</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">display</span><span class="p">(</span><span class="s">&quot;text/html&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="p">(</span><span class="s">&quot;&quot;&quot;&lt;video autoplay controls&gt;&lt;source src=&quot;data:video/x-m4v;base64,&quot;&quot;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">Base64</span><span class="o">.</span><span class="n">base64encode</span><span class="p">(</span><span class="n">open</span><span class="p">(</span><span class="n">read</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">)),</span><span class="s">&quot;&quot;&quot;&quot; type=&quot;video/mp4&quot;&gt;&lt;/video&gt;&quot;&quot;&quot;</span><span class="p">))</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+
+<span class="n">display_mp4</span><span class="p">(</span><span class="s">&quot;covid_evolution.mp4&quot;</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><video autoplay controls><source src="data:video/x-m4v;base64,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" type="video/mp4"></video></div></div>
+</div>
+</section>
+<section id="data-collection">
+<h2>Data Collection<a class="headerlink" href="#data-collection" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Helper functions</span><span class="w"></span>
+<span class="n">infected</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">:I</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="n">recovered</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">:R</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>recovered (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">make_SIRgraph</span><span class="p">(;</span><span class="w"> </span><span class="n">SIRgraphparams</span><span class="o">...</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">to_collect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[(</span><span class="ss">:status</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="n">infected</span><span class="p">,</span><span class="w"> </span><span class="n">recovered</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">)]</span><span class="w"></span>
+<span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">run!</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">agent_step!</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="n">adata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">to_collect</span><span class="p">)</span><span class="w"></span>
+<span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="o">:</span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class="data-frame"><p>10 rows × 4 columns</p><table class="data-frame"><thead><tr><th></th><th>step</th><th>infected_status</th><th>recovered_status</th><th>length_status</th></tr><tr><th></th><th title="Int64">Int64</th><th title="Int64">Int64</th><th title="Int64">Int64</th><th title="Int64">Int64</th></tr></thead><tbody><tr><th>1</th><td>0</td><td>1</td><td>0</td><td>24781</td></tr><tr><th>2</th><td>1</td><td>1</td><td>0</td><td>24781</td></tr><tr><th>3</th><td>2</td><td>2</td><td>0</td><td>24781</td></tr><tr><th>4</th><td>3</td><td>5</td><td>0</td><td>24781</td></tr><tr><th>5</th><td>4</td><td>7</td><td>0</td><td>24781</td></tr><tr><th>6</th><td>5</td><td>9</td><td>0</td><td>24781</td></tr><tr><th>7</th><td>6</td><td>12</td><td>0</td><td>24781</td></tr><tr><th>8</th><td>7</td><td>16</td><td>0</td><td>24781</td></tr><tr><th>9</th><td>8</td><td>22</td><td>0</td><td>24781</td></tr><tr><th>10</th><td>9</td><td>33</td><td>0</td><td>24781</td></tr></tbody></table></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">Ns</span><span class="p">)</span><span class="w"> </span><span class="c"># Total initial population</span><span class="w"></span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="o">.</span><span class="n">step</span><span class="w"></span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">))</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span><span class="w"> </span><span class="n">xlabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;steps&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;log10(count)&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="n">li</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">log10</span><span class="o">.</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="n">aggname</span><span class="p">(</span><span class="ss">:status</span><span class="p">,</span><span class="w"> </span><span class="n">infected</span><span class="p">)]),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:blue</span><span class="p">)</span><span class="w"></span>
+<span class="n">lr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">log10</span><span class="o">.</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="n">aggname</span><span class="p">(</span><span class="ss">:status</span><span class="p">,</span><span class="w"> </span><span class="n">recovered</span><span class="p">)]),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:red</span><span class="p">)</span><span class="w"></span>
+<span class="n">dead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">log10</span><span class="o">.</span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">.-</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="n">aggname</span><span class="p">(</span><span class="ss">:status</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">)])</span><span class="w"></span>
+<span class="n">ld</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">dead</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:green</span><span class="p">)</span><span class="w"></span>
+<span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Legend</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">li</span><span class="p">,</span><span class="w"> </span><span class="n">lr</span><span class="p">,</span><span class="w"> </span><span class="n">ld</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;infected&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;recovered&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;dead&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">textsize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">)</span><span class="w"></span>
+<span class="n">fig</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/02-graph-sars2_18_0.png" src="_images/02-graph-sars2_18_0.png" />
+</div>
+</div>
+<p>The exponential growth is clearly visible since the logarithm of the number of infected increases linearly, until everyone is infected.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.7"
+        },
+        kernelOptions: {
+            kernelName: "julia-1.7",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.7'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="01-schelling.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Schelling’s segregation model</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="03-flocking.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Flocking of birds</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Wen-Wei Tseng<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
